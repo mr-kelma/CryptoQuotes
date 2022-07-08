@@ -20,21 +20,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvC-xO-yNi">
-                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="692" width="414" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="2JL-Zr-EhB"/>
+                                    <constraint firstAttribute="height" constant="170" id="2JL-Zr-EhB"/>
                                 </constraints>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-Mn-7DW">
                                 <rect key="frame" x="0.0" y="54" width="414" height="185"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crypto Quotes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y47-fd-LQj">
-                                        <rect key="frame" x="55.5" y="0.0" width="303.5" height="80"/>
+                                        <rect key="frame" x="43" y="0.0" width="328" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="Q0C-mA-no2"/>
                                             <constraint firstAttribute="height" constant="80" id="bZI-PC-NmS"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="50"/>
                                         <color key="textColor" systemColor="systemGray6Color"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -44,7 +44,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gqd-zC-Xrh">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoinsign.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="y9G-my-xP8">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoinsign.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="y9G-my-xP8">
                                                         <rect key="frame" x="0.0" y="0.5" width="80" height="79"/>
                                                         <color key="tintColor" systemColor="systemGray6Color"/>
                                                         <constraints>
@@ -66,7 +66,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="y9G-my-xP8" firstAttribute="top" secondItem="Gqd-zC-Xrh" secondAttribute="top" id="ash-zR-Udv"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="eeJ-bS-Or0"/>
+                                                    <constraint firstAttribute="width" constant="300" id="eeJ-bS-Or0"/>
                                                     <constraint firstAttribute="bottom" secondItem="y9G-my-xP8" secondAttribute="bottom" id="olM-Sb-7xU"/>
                                                 </constraints>
                                             </stackView>
@@ -102,6 +102,11 @@
                             <constraint firstItem="vvC-xO-yNi" firstAttribute="trailing" secondItem="sVO-4R-Xnb" secondAttribute="trailing" id="xv5-SF-m1S"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currencyLabel" destination="gD7-eX-vTR" id="8fB-pf-fmH"/>
+                        <outlet property="currencyPicker" destination="vvC-xO-yNi" id="Y6x-BE-Wxu"/>
+                        <outlet property="priceLabel" destination="dvy-Hx-ZWq" id="AnQ-0o-Cwe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uc-bQ-Fal" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,7 +115,7 @@
     </scenes>
     <resources>
         <image name="Mr.Kelma_Background" width="414" height="896"/>
-        <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="bitcoinsign.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
