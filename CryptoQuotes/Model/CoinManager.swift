@@ -15,15 +15,18 @@ protocol CoinManagerDelegate {
 struct CoinManager {
     
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/"
-    let apiKey = "2B6F995F-A289-45AA-837D-99C61646784D"
-    let coinArray = ["", "BTC", "ETH", "XRP", "ADA", "DOGE", "LTC"]
-    let currencyArray = ["", "USD", "EUR", "RUB", "CNY", "CAD", "GBP", "PLN", "BRL", "AUD", "HKD", "IDR", "ILS", "INR", "JPY", "MXN", "NOK","NZD", "RON", "SEK"]
+    let apiKeyOne = "2B6F995F-A289-45AA-837D-99C61646784D"
+    let apiKeyTwo = "91BCDB64-EF71-4342-A1C9-AE55E9849FF3"
+    //If the number of requests for the first key exceeds 100 per day, use the second key
+    let coinArray = ["BTC", "ETH", "XRP", "ADA", "DOGE", "LTC"]
+    let currencyArray = ["USD", "EUR", "RUB", "CNY", "CAD", "GBP", "PLN", "BRL", "AUD", "HKD", "IDR", "ILS", "INR", "JPY", "MXN", "NOK","NZD", "RON", "SEK"]
     let imageCoin = [#imageLiteral(resourceName: "BTC"), #imageLiteral(resourceName: "ETH"), #imageLiteral(resourceName: "XRP"), #imageLiteral(resourceName: "ADA"), #imageLiteral(resourceName: "DOGE"), #imageLiteral(resourceName: "LTC")]
     
     var delegate: CoinManagerDelegate?
     
     func getCoinPrice(coin: String, currency: String) {
-        let urlString = "\(baseURL)\(coin)/\(currency)?apikey=\(apiKey)"
+        let urlString = "\(baseURL)\(coin)/\(currency)?apikey=\(apiKeyOne)"
+        print(urlString)
 
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
@@ -35,7 +38,10 @@ struct CoinManager {
                 
                 if let safeData = data {
                     if let price = self.parseJSON(safeData) {
-                        let priceString = String(format: "%.2f", price)
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .decimal
+                        formatter.groupingSeparator = " "
+                        let priceString = String(format: "%.2f", formatter.string(for: price) ?? "Look at it later")
                         self.delegate?.didUpdatePrice(price: priceString, coin: coin, currency: currency)
                     }
                 }

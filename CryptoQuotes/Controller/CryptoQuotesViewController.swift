@@ -9,6 +9,8 @@ import UIKit
 
 class CryptoQuotesViewController: UIViewController {
     
+    var selectedCoin = "BTC"
+    var selectedCurrency = "USD"
     var coinManager = CoinManager()
     
     @IBOutlet weak var coinLabel: UIImageView!
@@ -26,6 +28,9 @@ class CryptoQuotesViewController: UIViewController {
         coinPicker.delegate = self
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        coinPicker.selectedRow(inComponent: 0)
+        currencyPicker.selectedRow(inComponent: 0)
+        coinManager.getCoinPrice(coin: "BTC", currency: "USD")
     }
 }
 
@@ -77,8 +82,15 @@ extension CryptoQuotesViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCoin = coinManager.coinArray[row]
-        let selectedCurrency = coinManager.currencyArray[row]
+        switch pickerView.tag {
+        case 1:
+            selectedCoin = coinManager.coinArray[row]
+        case 2:
+            selectedCurrency = coinManager.currencyArray[row]
+        default:
+            selectedCoin = "BTC"
+            selectedCurrency = "USD"
+        }
         coinManager.getCoinPrice(coin: selectedCoin, currency: selectedCurrency)
     }
 }
