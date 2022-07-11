@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="122" width="414" height="511"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gqd-zC-Xrh">
-                                        <rect key="frame" x="57" y="205.5" width="300" height="100"/>
+                                        <rect key="frame" x="47" y="205.5" width="320" height="100"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="questionmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="y9G-my-xP8">
                                                 <rect key="frame" x="0.0" y="0.5" width="80" height="99"/>
@@ -32,14 +32,24 @@
                                                     <constraint firstAttribute="width" constant="80" id="FH9-Kw-RUQ"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-Hx-ZWq">
-                                                <rect key="frame" x="90" y="0.0" width="138" height="100"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <color key="textColor" systemColor="systemGray6Color"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-Hx-ZWq">
+                                                <rect key="frame" x="90" y="0.0" width="158" height="100"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="...">
+                                                        <attributes>
+                                                            <color key="NSColor" systemColor="systemGray6Color"/>
+                                                            <font key="NSFont" metaFont="system" size="30"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-eX-vTR">
-                                                <rect key="frame" x="238" y="0.0" width="62" height="100"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-eX-vTR">
+                                                <rect key="frame" x="258" y="0.0" width="62" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="LIw-2Z-9hX"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                 <color key="textColor" systemColor="systemGray6Color"/>
                                                 <nil key="highlightedColor"/>
@@ -47,7 +57,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="I53-sL-nqe"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="sbD-23-qry"/>
+                                            <constraint firstAttribute="width" constant="320" id="sbD-23-qry"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
