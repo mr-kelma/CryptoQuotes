@@ -21,13 +21,13 @@ struct CoinManager {
     let coinArray = ["BTC", "ETH", "XRP", "ADA", "DOGE", "LTC"]
     let currencyArray = ["USD", "EUR", "RUB", "CNY", "CAD", "GBP", "PLN", "BRL", "AUD", "HKD", "IDR", "ILS", "INR", "JPY", "MXN", "NOK","NZD", "RON", "SEK"]
     let imageCoin = [#imageLiteral(resourceName: "BTC"), #imageLiteral(resourceName: "ETH"), #imageLiteral(resourceName: "XRP"), #imageLiteral(resourceName: "ADA"), #imageLiteral(resourceName: "DOGE"), #imageLiteral(resourceName: "LTC")]
+    let formatterPrice = NumberFormatter()
     
     var delegate: CoinManagerDelegate?
     
     func getCoinPrice(coin: String, currency: String) {
         let urlString = "\(baseURL)\(coin)/\(currency)?apikey=\(apiKeyOne)"
-        print(urlString)
-
+        
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -38,10 +38,10 @@ struct CoinManager {
                 
                 if let safeData = data {
                     if let price = self.parseJSON(safeData) {
-                        let formatter = NumberFormatter()
-                        formatter.numberStyle = .decimal
-                        formatter.groupingSeparator = " "
-                        let priceString = String(format: "%.2f", formatter.string(for: price) ?? "Look at it later")
+                        let priceRounded = price.round(to: 2)
+                        formatterPrice.numberStyle = .decimal
+                        formatterPrice.groupingSeparator = " "
+                        let priceString = formatterPrice.string(for: priceRounded) ?? "Check it out later"
                         self.delegate?.didUpdatePrice(price: priceString, coin: coin, currency: currency)
                     }
                 }
@@ -60,5 +60,16 @@ struct CoinManager {
             delegate?.didFailWithError(error: error)
             return nil
         }
+    }
+}
+
+extension Double {
+    func round(to places: Int) -> Double {
+        let precisionNUmber = pow(10, Double(places))
+        var n = self
+        n = n * precisionNUmber
+        n.round()
+        n = n / precisionNUmber
+        return n
     }
 }
